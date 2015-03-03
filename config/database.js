@@ -1,6 +1,8 @@
 // config/database.js
 module.exports = {
 
-	'url' : 'your_database_here' // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
+	'url': 'postgres://mpmmadmin:admin@localhost:5432/mpmm_db?currentSchema=useradmin'
+
+	// looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
 
 };

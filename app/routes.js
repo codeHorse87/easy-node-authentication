@@ -38,7 +38,7 @@ module.exports = function(app, passport) {
 			failureFlash : true // allow flash messages
 		}));
 
-		// SIGNUP =================================
+	/*		// SIGNUP =================================
 		// show the signup form
 		app.get('/signup', function(req, res) {
 			res.render('signup.ejs', { message: req.flash('signupMessage') });
@@ -86,7 +86,7 @@ module.exports = function(app, passport) {
 			passport.authenticate('google', {
 				successRedirect : '/profile',
 				failureRedirect : '/'
-			}));
+	 }));*/
 
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
@@ -102,6 +102,19 @@ module.exports = function(app, passport) {
 			failureFlash : true // allow flash messages
 		}));
 
+	// handle the callback after twitter has authorized the user
+	app.get('/connect/twitter/callback',
+		passport.authorize('twitter', {
+			successRedirect: '/profile',
+			failureRedirect: '/'
+		}));
+
+
+	/*
+	 // google ---------------------------------
+
+	 // send to google to do the authentication
+	 app.get('/connect/google', passport.authorize('google', { scope : ['profile', 'email'] }));
 	// facebook -------------------------------
 
 		// send to facebook to do the authentication
@@ -119,18 +132,6 @@ module.exports = function(app, passport) {
 		// send to twitter to do the authentication
 		app.get('/connect/twitter', passport.authorize('twitter', { scope : 'email' }));
 
-		// handle the callback after twitter has authorized the user
-		app.get('/connect/twitter/callback',
-			passport.authorize('twitter', {
-				successRedirect : '/profile',
-				failureRedirect : '/'
-			}));
-
-
-	// google ---------------------------------
-
-		// send to google to do the authentication
-		app.get('/connect/google', passport.authorize('google', { scope : ['profile', 'email'] }));
 
 		// the callback after google has authorized the user
 		app.get('/connect/google/callback',
@@ -138,6 +139,7 @@ module.exports = function(app, passport) {
 				successRedirect : '/profile',
 				failureRedirect : '/'
 			}));
+	 */
 
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
@@ -156,6 +158,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	/*
 	// facebook -------------------------------
 	app.get('/unlink/facebook', isLoggedIn, function(req, res) {
 		var user            = req.user;
@@ -182,6 +185,7 @@ module.exports = function(app, passport) {
 			res.redirect('/profile');
 		});
 	});
+	 */
 
 
 };
